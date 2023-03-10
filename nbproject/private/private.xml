@@ -3,6 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/conta/Documents/NetBeansProjects/hrstorm/src/gui/EditCompetenceForm.java</file>
+            <file>file:/C:/Users/conta/Documents/NetBeansProjects/hrstorm/src/entities/Competence.java</file>
+            <file>file:/C:/Users/conta/Documents/NetBeansProjects/hrstorm/src/gui/AddCompetenceForm.java</file>
+            <file>file:/C:/Users/conta/Documents/NetBeansProjects/hrstorm/src/com/hrstorm/app/MyApplication.java</file>
+            <file>file:/C:/Users/conta/Documents/NetBeansProjects/hrstorm/src/Poste.java</file>
+            <file>file:/C:/Users/conta/Documents/NetBeansProjects/hrstorm/src/services/CompetenceService.java</file>
+            <file>file:/C:/Users/conta/Documents/NetBeansProjects/hrstorm/src/gui/ListCompetenceForm.java</file>
+        </group>
     </open-files>
 </project-private>

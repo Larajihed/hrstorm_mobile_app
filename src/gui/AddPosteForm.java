@@ -2,6 +2,7 @@ package gui;
 
 import com.codename1.ui.Button;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
@@ -20,7 +21,9 @@ public class AddPosteForm extends Form {
     public AddPosteForm() {
         this.setLayout(BoxLayout.y());
         this.setTitle("Nouveau Poste");
-
+ this.getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, (evt) -> {
+            new HomeForm().show();
+        });
         // Widgets
         TextField nomField = new TextField("", "Nom de poste");
         TextField missionsField = new TextField("", "Liste des missions");
@@ -50,7 +53,7 @@ public class AddPosteForm extends Form {
 
                 // Add selected competences to the poste
                 for (Competence competence : competenceService.fetchTasks()) {
-                   poste.setCompetences((Collection<Competence>) competence);
+                //   poste.setCompetences((Collection<Competence>) competence);
                 }
 
                 // Add the new poste

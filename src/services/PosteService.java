@@ -82,7 +82,7 @@ public class PosteService {
                 Poste p = new Poste();
                // p.setId((Integer) item.get("Id"));
                 float i = Float.parseFloat(item.get("Id").toString());
-                System.out.println((int) i);
+              //  System.out.println((int) i);
                 p.setId((int) i);
                 p.setNom((String) item.get("Nom"));
                 p.setMissions((String) item.get("Missions"));
@@ -101,7 +101,6 @@ public class PosteService {
                 }
 
                 postes.add(p);
-                System.out.println(postes);
             }
 
         } catch (Exception ex) {

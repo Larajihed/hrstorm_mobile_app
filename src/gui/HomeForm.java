@@ -21,17 +21,20 @@ public class HomeForm extends Form {
 
     public HomeForm(){
     
-        Button competenceBtn = new Button("Competences");
-   Toolbar tb = this.getToolbar();
-Container topBar = BorderLayout.east(new Label("Menu"));
-topBar.add(BorderLayout.SOUTH, new Label("Cool App Tagline...", "SidemenuTagline")); 
-topBar.setUIID("SideCommand");
-tb.addComponentToSideMenu(topBar);
+    Button competenceBtn = new Button("Competences");
+    Button posteBtn = new Button("Fiches des postes");
+        Button statBtn = new Button("Statiscs");
 
-tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {}); 
-tb.addMaterialCommandToSideMenu("Website", FontImage.MATERIAL_WEB, e -> {});
-tb.addMaterialCommandToSideMenu("Settings", FontImage.MATERIAL_SETTINGS, e -> {});
-tb.addMaterialCommandToSideMenu("About", FontImage.MATERIAL_INFO, e -> {});
+    Toolbar tb = this.getToolbar();
+    Container topBar = BorderLayout.east(new Label("Menu"));
+    topBar.add(BorderLayout.SOUTH, new Label("Cool App Tagline...", "SidemenuTagline")); 
+    topBar.setUIID("SideCommand");
+    tb.addComponentToSideMenu(topBar);
+
+    tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {}); 
+    tb.addMaterialCommandToSideMenu("Website", FontImage.MATERIAL_WEB, e -> {});
+    tb.addMaterialCommandToSideMenu("Settings", FontImage.MATERIAL_SETTINGS, e -> {});
+    tb.addMaterialCommandToSideMenu("About", FontImage.MATERIAL_INFO, e -> {});
 
 
 
@@ -39,7 +42,12 @@ tb.addMaterialCommandToSideMenu("About", FontImage.MATERIAL_INFO, e -> {});
         competenceBtn.addActionListener((evt) -> {
             new ListCompetenceForm().show();
         });
-        
-        this.addAll(competenceBtn);
+        posteBtn.addActionListener((evt) -> {
+            new ListPosteForm().show();
+        }); 
+        statBtn.addActionListener((evt) -> {
+            new StatsForm().show();
+        }); 
+        this.addAll(competenceBtn,posteBtn);
     }
 }

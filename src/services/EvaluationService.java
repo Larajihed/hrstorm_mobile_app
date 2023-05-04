@@ -10,47 +10,45 @@ import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
-import entities.Competence;
+import entities.Evaluation;
 import java.io.IOException;
 import java.util.ArrayList;
-import utils.Statics;
 import java.util.List;
 import java.util.Map;
-
+import utils.Statics;
 
 /**
  *
  * @author conta
  */
-public class CompetenceService {
-    //var
-    private static CompetenceService instance = null;
+public class EvaluationService {
+    
+    private static EvaluationService instance = null;
     private ConnectionRequest req;
     public boolean result;
 
     //util
-    List<Competence> competences = new ArrayList<Competence>();
+    List<Evaluation> Evaluations = new ArrayList<Evaluation>();
     
     
    
 
     //Singleton
-    public static CompetenceService getInstance() {
+    public static EvaluationService getInstance() {
         if (instance == null) {
-            instance = new CompetenceService();
+            instance = new EvaluationService();
         }
 
         return instance;
     }
     
     //ACTIONS
-     private CompetenceService()     {
+     private EvaluationService()     {
         req = new ConnectionRequest();
     }
     //Add
-    public void ajoutCompetence(Competence c) {
-       // String url =Statics.BASE_URL+"/hremployee/competence/newcompetence?Nom="+c.getNom()+"&description="+c.getDescription();
-        String url =Statics.BASE_URL+"/hremployee/competence/newcompetence?Nom="+ c.getNom() +"&description="+ c.getDescription();
+    public void ajoutEvaluation(Evaluation c) {
+        String url =Statics.BASE_URL+"/hremployee/Evaluation/newEvaluation?commentaire="+ c.getCommentaire() +"&experience="+ c.getExperience()+"&level="+c.getLevel()+"&poste="+c.getPoste();
         req.setUrl(url);
         req.addResponseListener((e) -> {
             String str = new String ( req.getResponseData());
@@ -60,12 +58,12 @@ public class CompetenceService {
         NetworkManager.getInstance().addToQueueAndWait(req);
     } 
     
-    public List<Competence> fetchTasks() {
+    public List<Evaluation> fetchTasks() {
         
         req = new ConnectionRequest();
         
         //1
-        String fetchURL = Statics.BASE_URL + "/hremployee/competence/get";
+        String fetchURL = Statics.BASE_URL + "/hremployee/Evaluation/get";
         
         //2
         req.setUrl(fetchURL);
@@ -77,19 +75,19 @@ public class CompetenceService {
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                competences = parseTasks(new String(req.getResponseData()));
+                Evaluations = parseTasks(new String(req.getResponseData()));
                 req.removeResponseListener(this);
             }
         });
         
         NetworkManager.getInstance().addToQueueAndWait(req);
-        return competences;
+        return Evaluations;
     }
 //Parse
-    public List<Competence> parseTasks(String jsonText) {
+    public List<Evaluation> parseTasks(String jsonText) {
 
         //var
-        competences = new ArrayList<>();
+        Evaluations = new ArrayList<>();
         
         //DO
         //1
@@ -106,14 +104,14 @@ public class CompetenceService {
             //4
             for (Map<String, Object> item : list) {
                 
-                Competence t = new Competence();
-                t.setNom((String) item.get("Nom"));
-                t.setDescription((String) item.get("Description"));
+                Evaluation t = new Evaluation();
+                t.setCommentaire((String) item.get("Nom"));
+                t.setExperience((Integer) item.get("Experience"));
                 //t.setId((Integer) item.get("Id"));
                 float i = Float.parseFloat(item.get("Id").toString());
-               // System.out.println((int) i);
+              //  System.out.println((int) i);
                 t.setId((int) i);
-                competences.add(t);
+                Evaluations.add(t);
             }
         
         } catch (IOException ex) {
@@ -122,11 +120,11 @@ public class CompetenceService {
         
         
         //End
-        return competences;
+        return Evaluations;
     }
  //Delete 
-    public boolean deleteCompetence(int id) {
-        String url = Statics.BASE_URL +"/hremployee/competence/delete/"+id;
+    public boolean deleteEvaluation(int id) {
+        String url = Statics.BASE_URL +"/hremployee/Evaluation/delete/"+id;
         req.setUrl(url);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -138,22 +136,18 @@ public class CompetenceService {
         return  true;
     }
     
-    public void modifierCompetence(Competence c) {
-        String url = Statics.BASE_URL +"/hremployee/competence/UpdateCompetenceJSON/"+c.getId()+ "?Nom="+c.getNom()+"&Description="+c.getDescription();
+    public void modifierEvaluation(Evaluation c) {
+        String url = Statics.BASE_URL +"/hremployee/Evaluation/UpdateEvaluationJSON/"+"commentaire="+ c.getCommentaire() +"&experience="+ c.getExperience()+"&level="+c.getLevel()+"&poste="+c.getPoste();
         req.setUrl(url);
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                System.out.println(req.getResponseCode() == 200) ;  // Code response Http 200 ok
+                System.out.println(req.getResponseCode() == 200) ;  
                 req.removeResponseListener(this);
             }
         });
         
-    NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
-        
+    NetworkManager.getInstance().addToQueueAndWait(req);
     }
 }
-
- 
-

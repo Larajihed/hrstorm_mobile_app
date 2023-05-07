@@ -21,9 +21,9 @@ public class ListPosteForm extends Form {
 
     public ListPosteForm() {
         this.setLayout(BoxLayout.y());
-        this.setTitle("All Postes");
+        this.setTitle("Postes");
         this.getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, (evt) -> {
-            new AddPosteForm().showBack();
+            new HomeForm().showBack();
         });
         this.getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_ADD, (evt) -> {
             new AddPosteForm().showBack();

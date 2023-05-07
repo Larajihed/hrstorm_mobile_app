@@ -58,7 +58,7 @@ public class EvaluationService {
         NetworkManager.getInstance().addToQueueAndWait(req);
     } 
     
-    public List<Evaluation> fetchTasks() {
+    public List<Evaluation> fetchEvaluations() {
         
         req = new ConnectionRequest();
         
@@ -75,7 +75,7 @@ public class EvaluationService {
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                Evaluations = parseTasks(new String(req.getResponseData()));
+                Evaluations = parseEvaluations(new String(req.getResponseData()));
                 req.removeResponseListener(this);
             }
         });
@@ -84,7 +84,7 @@ public class EvaluationService {
         return Evaluations;
     }
 //Parse
-    public List<Evaluation> parseTasks(String jsonText) {
+    public List<Evaluation> parseEvaluations(String jsonText) {
 
         //var
         Evaluations = new ArrayList<>();
